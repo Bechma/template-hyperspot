@@ -1,0 +1,88 @@
+[workspace]
+members = [
+    "apps/server",
+    "modules/user_info-sdk",
+    "modules/users_info",
+]
+resolver = "3"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+license = "Apache-2.0"
+authors = ["CyberFabric"]
+
+[workspace.lints]
+clippy = { pedantic = "deny" }
+
+[workspace.dependencies]
+# Error handling
+anyhow = "1.0"
+thiserror = "2.0"
+
+# CyberFabric
+cf-modkit = { version = "0.1.0" }
+cf-modkit-macros = { version = "0.1.0" }
+cf-modkit-auth = { version = "0.1.0" }
+cf-modkit-db = { version = "0.1.5" }
+cf-modkit-db-macros = { version = "0.1.5" }
+cf-modkit-errors = { version = "0.1.5" }
+cf-modkit-errors-macro = { version = "0.1.5" }
+cf-modkit-node-info = { version = "0.1.0" }
+cf-modkit-odata = { version = "0.1.5" }
+cf-modkit-odata-macros = { version = "0.1.0" }
+cf-modkit-sdk = { version = "0.1.0" }
+cf-modkit-security = { version = "0.1.5" }
+cf-modkit-transport-grpc = { version = "0.1.5" }
+cf-modkit-utils = { version = "0.1.5" }
+
+cf-api-gateway = { version = "0.1.0" }
+cf-tenant-resolver-gw = { version = "0.1.0" }
+cf-tenant-resolver-sdk = { version =  "0.1.0" }
+cf-system-sdks = { version = "0.1.4" }
+cf-system-sdk-directory = { version = "0.1.4" }
+
+
+# Server setup (required to test modules)
+clap = { version = "4.5", features = ["derive"] }
+figment = "0.10"
+inventory = "0.3"
+
+# HTTP server
+axum = "0.8"
+http = "1.4"
+tower = "0.5"
+tower-http = { version = "0.6" }
+httpmock = "0.8"
+
+# Database
+sea-orm = "1.1"
+sea-orm-migration = "1.1"
+testcontainers = "0.26"
+testcontainers-modules = "0.14"
+
+# Open Telemetry
+tracing = "0.1"
+tracing-test = "0.2"
+opentelemetry = "0.31"
+opentelemetry_sdk = "0.31"
+
+# Async runtime
+tokio = { version = "1.49", features = ["full"] }
+tokio-test = "0.4"
+tokio-util = "0.7"
+async-trait = "0.1"
+futures = "0.3"
+futures-core = "0.3"
+futures-util = "0.3"
+
+# Special types
+uuid = "1.20"
+url = "2.5"
+time = "0.3"
+arc-swap = "1.8"
+
+# Serialization
+serde = "1.0"
+serde_json = "1.0"
+utoipa = "5.4"
