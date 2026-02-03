@@ -18,9 +18,11 @@ tokio-util = { workspace = true }
 uuid = { workspace = true, features = ["v4"] }
 serde_json = { workspace = true }
 
-cf-api-gateway = { workspace = true }
-cf-tenant-resolver-gw = { workspace = true }
+cf_api_gateway = { workspace = true }
+cf_tenant_resolver_gw = { workspace = true }
 
 # Your modules
-users_info = { path = "../../modules/users_info" }
+cf_users_info = { workspace = true }
 
+[build-dependencies]
+cargo_toml = "0.22.3"

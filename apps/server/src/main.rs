@@ -1,4 +1,4 @@
-mod registered_modules;
+include!(concat!(env!("OUT_DIR"), "/registered_modules.rs"));
 
 use anyhow::{Result, anyhow, bail};
 use clap::{Parser, Subcommand};
@@ -108,7 +108,6 @@ async fn main() -> Result<()> {
     );
 
     // One-time connectivity probe
-    #[cfg(feature = "otel")]
     if let Some(tc) = modkit_tracing_config.as_ref()
         && let Err(e) = modkit::telemetry::init::otel_connectivity_probe(tc)
     {
@@ -289,7 +288,6 @@ async fn run_server(config: AppConfig, args: Cli) -> Result<()> {
     let result = run(run_options).await;
 
     // Graceful shutdown - flush any remaining traces
-    #[cfg(feature = "otel")]
     modkit::telemetry::init::shutdown_tracing();
 
     result

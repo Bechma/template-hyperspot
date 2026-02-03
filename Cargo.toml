@@ -1,8 +1,8 @@
 [workspace]
 members = [
     "apps/server",
-    "modules/user_info-sdk",
-    "modules/users_info",
+    "modules/cf-users-info",
+    "modules/cf-users-info-sdk",
 ]
 resolver = "3"
 
@@ -12,8 +12,11 @@ edition = "2024"
 license = "Apache-2.0"
 authors = ["CyberFabric"]
 
-[workspace.lints]
-clippy = { pedantic = "deny" }
+[workspace.lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(coverage_nightly)'] }
+
+[workspace.lints.clippy]
+pedantic = "deny"
 
 [workspace.dependencies]
 # Error handling
@@ -21,26 +24,30 @@ anyhow = "1.0"
 thiserror = "2.0"
 
 # CyberFabric
-cf-modkit = { version = "0.1.0" }
-cf-modkit-macros = { version = "0.1.0" }
-cf-modkit-auth = { version = "0.1.0" }
-cf-modkit-db = { version = "0.1.5" }
-cf-modkit-db-macros = { version = "0.1.5" }
-cf-modkit-errors = { version = "0.1.5" }
-cf-modkit-errors-macro = { version = "0.1.5" }
-cf-modkit-node-info = { version = "0.1.0" }
-cf-modkit-odata = { version = "0.1.5" }
-cf-modkit-odata-macros = { version = "0.1.0" }
-cf-modkit-sdk = { version = "0.1.0" }
-cf-modkit-security = { version = "0.1.5" }
-cf-modkit-transport-grpc = { version = "0.1.5" }
-cf-modkit-utils = { version = "0.1.5" }
+cf-modkit = { version = "0.2.0" }
+cf-modkit-macros = { version = "0.2.0" }
+cf-modkit-auth = { version = "0.2.0" }
+cf-modkit-db = { version = "0.2.0" }
+cf-modkit-db-macros = { version = "0.2.0" }
+cf-modkit-errors = { version = "0.2.0" }
+cf-modkit-errors-macro = { version = "0.2.0" }
+cf-modkit-node-info = { version = "0.2.0" }
+cf-modkit-odata = { version = "0.2.0" }
+cf-modkit-odata-macros = { version = "0.2.0" }
+cf-modkit-sdk = { version = "0.2.0" }
+cf-modkit-security = { version = "0.2.0" }
+cf-modkit-transport-grpc = { version = "0.2.0" }
+cf-modkit-utils = { version = "0.2.0" }
 
-cf-api-gateway = { version = "0.1.0" }
-cf-tenant-resolver-gw = { version = "0.1.0" }
-cf-tenant-resolver-sdk = { version =  "0.1.0" }
-cf-system-sdks = { version = "0.1.4" }
-cf-system-sdk-directory = { version = "0.1.4" }
+cf_api_gateway = { package = "cf-api-gateway", version = "0.1.1" }
+cf_tenant_resolver_gw = { package = "cf-tenant-resolver-gw", version = "0.1.1" }
+cf-tenant-resolver-sdk = { version = "0.1.1" }
+cf-system-sdks = { version = "0.1.5" }
+cf-system-sdk-directory = { version = "0.1.5" }
+
+# Your modules
+cf-users-info-sdk = { path = "modules/cf-users-info-sdk" }
+cf_users_info = { package = "cf-users-info", path = "modules/cf-users-info" }
 
 
 # Server setup (required to test modules)
@@ -86,3 +93,5 @@ arc-swap = "1.8"
 serde = "1.0"
 serde_json = "1.0"
 utoipa = "5.4"
+
+cargo_metadata = "0.23.1"
