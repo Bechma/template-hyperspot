@@ -504,6 +504,30 @@ dependencies = [
 ]
 
 [[package]]
+name = "cf-grpc-hub"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f8d9f7750e357a17e03e5e88d2f8dbfb4bbda70817b26bc52a6fbaf8d6d57a58"
+dependencies = [
+ "anyhow",
+ "async-trait",
+ "cf-modkit",
+ "cf-modkit-transport-grpc",
+ "cf-system-sdks",
+ "http",
+ "inventory",
+ "parking_lot",
+ "serde",
+ "serde_json",
+ "tokio",
+ "tokio-stream",
+ "tokio-util",
+ "tonic",
+ "tower",
+ "tracing",
+]
+
+[[package]]
 name = "cf-modkit"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -817,6 +841,34 @@ dependencies = [
  "serde",
  "serde_json",
  "thiserror 2.0.18",
+ "uuid",
+]
+
+[[package]]
+name = "cf-types-registry"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "89a3108759bdd69e7e2e18d7e00276ecdddff0d258cbe969e58d741bb4e8142a"
+dependencies = [
+ "anyhow",
+ "arc-swap",
+ "async-trait",
+ "axum",
+ "cf-modkit",
+ "cf-modkit-auth",
+ "cf-modkit-macros",
+ "cf-modkit-security",
+ "cf-types-registry-sdk",
+ "futures",
+ "gts",
+ "inventory",
+ "parking_lot",
+ "serde",
+ "serde_json",
+ "thiserror 2.0.18",
+ "tokio",
+ "tracing",
+ "utoipa",
  "uuid",
 ]
 
@@ -4057,9 +4109,11 @@ dependencies = [
  "anyhow",
  "cargo_toml",
  "cf-api-gateway",
+ "cf-grpc-hub",
  "cf-modkit",
  "cf-modkit-db",
  "cf-tenant-resolver-gw",
+ "cf-types-registry",
  "cf-users-info",
  "clap",
  "figment",

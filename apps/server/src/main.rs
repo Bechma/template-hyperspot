@@ -89,15 +89,19 @@ async fn main() -> Result<()> {
 
     // Build OpenTelemetry layer before logging
     // Convert TracingConfig from modkit::bootstrap to modkit's type (they have identical structure)
+    #[cfg(feature = "otel")]
     let modkit_tracing_config: Option<modkit::telemetry::TracingConfig> = config
         .tracing
         .as_ref()
         .and_then(|tc| serde_json::to_value(tc).ok())
         .and_then(|v| serde_json::from_value(v).ok());
+    #[cfg(feature = "otel")]
     let otel_layer = modkit_tracing_config
         .as_ref()
         .map(modkit::telemetry::init::init_tracing)
         .transpose()?;
+    #[cfg(not(feature = "otel"))]
+    let otel_layer = None;
 
     // Initialize logging + otel in one Registry
     let logging_config = config.logging.clone().unwrap_or_default();
@@ -108,6 +112,7 @@ async fn main() -> Result<()> {
     );
 
     // One-time connectivity probe
+    #[cfg(feature = "otel")]
     if let Some(tc) = modkit_tracing_config.as_ref()
         && let Err(e) = modkit::telemetry::init::otel_connectivity_probe(tc)
     {

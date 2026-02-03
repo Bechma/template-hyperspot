@@ -24,7 +24,7 @@ anyhow = "1.0"
 thiserror = "2.0"
 
 # CyberFabric
-cf-modkit = { version = "0.2.0" }
+cf-modkit = { version = "0.2.0", default-features = false }
 cf-modkit-macros = { version = "0.2.0" }
 cf-modkit-auth = { version = "0.2.0" }
 cf-modkit-db = { version = "0.2.0" }
@@ -40,6 +40,8 @@ cf-modkit-transport-grpc = { version = "0.2.0" }
 cf-modkit-utils = { version = "0.2.0" }
 
 cf_api_gateway = { package = "cf-api-gateway", version = "0.1.1" }
+cf_grpc_hub = { package = "cf-grpc-hub", version = "0.1.1" }
+cf_types_registry = { package = "cf-types-registry", version = "0.1.1" }
 cf_tenant_resolver_gw = { package = "cf-tenant-resolver-gw", version = "0.1.1" }
 cf-tenant-resolver-sdk = { version = "0.1.1" }
 cf-system-sdks = { version = "0.1.5" }
